@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    enum TemperatureType {
+        case ceslsius, kelvin, farenheit
+    }
+    
+    @State private var inputType: TemperatureType = .ceslsius
+    @State private var outputType: TemperatureType = .farenheit
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            Form {
+                
+            }
+            .navigationTitle("Temperature App")
         }
-        .padding()
     }
 }
 
