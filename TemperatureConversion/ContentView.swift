@@ -15,6 +15,7 @@ struct ContentView: View {
     
     @State private var inputType: TemperatureType = .celsius
     @State private var outputType: TemperatureType = .farenheit
+    @FocusState private var inputNumberIsFocused: Bool
     
     @State private var inputNumber: Double = 0
     private var outputNumber: Double {
@@ -49,6 +50,8 @@ struct ContentView: View {
                     .pickerStyle(.segmented)
                     
                     TextField("Enter Amount", value: $inputNumber, format: .number)
+                        .keyboardType(.decimalPad)
+                        .focused($inputNumberIsFocused)
                 }
                 
                 Section("Output Temperature") {
@@ -65,6 +68,13 @@ struct ContentView: View {
                 
             }
             .navigationTitle("Temperature App")
+            .toolbar {
+                if inputNumberIsFocused {
+                    Button("Done") {
+                        inputNumberIsFocused = false
+                    }
+                }
+            }
         }
     }
 }
